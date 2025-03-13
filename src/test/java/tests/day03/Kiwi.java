@@ -3,12 +3,15 @@ package tests.day03;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.KiwiPage;
 import utilities.Driver;
 import utilities.ReusableMethods;
+
+import java.time.Duration;
 
 public class Kiwi {
     AndroidDriver<AndroidElement> driver = Driver.getAndroidDriver();
@@ -83,9 +86,36 @@ public class Kiwi {
         page.chooseButonu.click();
 
 // gidis tarihi 28 Mart olarak secilir ve set date e tiklanir
+        page.departureButonu.click();
+        Thread.sleep(2000);
+        //ReusableMethods.koordinatTiklamaMethodu(800,1400,500); // Boyle dırek 28 martta tıklar ancak asagı kaydırmak gerekırse asagıdakı gıbı yaparız
+        TouchAction action=new TouchAction<>(driver);
+        action.press(PointOption.point(560,1490)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(300)))
+                        .moveTo(PointOption.point(560,400)).release().perform();
+        ReusableMethods.koordinatTiklamaMethodu(803,1400,500); // Kaydırarak tarih secmek
+
+        page.setDateButonu.click();
+
         // search butonuna tiklanir
+        Thread.sleep(2000);
+        page.searchButonu.click();
+
 // en  ucuz ve aktarmasiz filtrelemeleri yapilir
+        Thread.sleep(2000);
+        page.bestButton.click();
+        Thread.sleep(2000);
+        page.cheapestButton.click();
+        Thread.sleep(2000);
+        page.stopsButton.click();
+        Thread.sleep(2000);
+        page.nonStopButonu.click();
+
+
 // gelen bilet fiyati kaydedilir ve kullanicin telefonuna sms olarak gonderilir
+        String fiyatBilgisi=page.fiyatBilgisi.getText();
+        driver.sendSMS("1111112222","Sectiginiz biletin fiyat bilgisi" + fiyatBilgisi);
+
+
 
     }
 }

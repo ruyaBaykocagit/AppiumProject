@@ -41,6 +41,28 @@ public class KiwiPage {
     @FindBy(xpath = "//*[@text='Departure:']")
     public WebElement departureButonu;
 
+    @FindBy(xpath = "//*[@text='Set date']")
+    public WebElement setDateButonu;
+
+    @FindBy(xpath = "(//*[@text='Search'])[1]")
+    public WebElement searchButonu;
+
+    @FindBy (xpath ="//*[@text='Stops']" )
+    public WebElement stopsButton;
+
+    @FindBy (xpath ="//*[@text='Best']" )
+    public WebElement bestButton;
+
+    @FindBy (xpath ="//*[@text='Cheapest']" )
+    public WebElement cheapestButton;
+
+    @FindBy(xpath = "(//*[@class='android.view.View'])[7]")//text='Nonstop' calısmazsa bunu da dene
+    public WebElement nonStopButonu;
+
+    @FindBy(xpath = "(//*[@class='android.widget.TextView'])[12]")
+    public WebElement fiyatBilgisi;
+
+
 
 
 
